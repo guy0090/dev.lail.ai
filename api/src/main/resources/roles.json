@@ -1,0 +1,51 @@
+[
+  {
+    "id": "64175f13e3edc808366d7ce2",
+    "name": "Superuser",
+    "permissions": [
+      {
+        "value": "*"
+      }
+    ],
+    "superUser": true,
+    "permanent": true,
+    "default": false,
+    "inherits": [
+      "64175f13e3edc808366d7ce3"
+    ]
+  },
+  {
+    "id": "64175f13e3edc808366d7ce3",
+    "name": "Admin",
+    "permissions": [
+      {
+        "value": "users"
+      },
+      {
+        "value": "roles"
+      },
+      {
+        "value": "encounters"
+      },
+      {
+        "value": "guilds"
+      }
+    ],
+    "superUser": false,
+    "permanent": false,
+    "default": false,
+    "inherits": [
+      "64175f13e3edc808366d7ce4"
+    ]
+  },
+  {
+    "id": "64175f13e3edc808366d7ce4",
+    "name": "User",
+    "permissions": [
+    ],
+    "superUser": false,
+    "permanent": true,
+    "default": true,
+    "inherits": []
+  }
+]

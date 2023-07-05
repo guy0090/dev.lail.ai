@@ -1,0 +1,16 @@
+storage "file" {
+  path = "/vault/file"
+}
+
+listener "tcp" {
+  address = "0.0.0.0:8200"
+  tls_disable = 0
+  tls_cert_file = "/etc/vault/vault.server.pem"
+  tls_key_file = "/vault/config/vault.server.key"
+  # TLS 1.2
+  tls_cipher_suites = "TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305"
+}
+
+default_lease_ttl = "168h"
+
+max_lease_ttl = "720h"

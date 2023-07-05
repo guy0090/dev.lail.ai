@@ -1,0 +1,83 @@
+version: "3.7"
+name: "loa"
+
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    container_name: "loa_mongo"
+    volumes:
+      - mongo-data:/data/db
+      - service-certs:/etc/certs
+      - service-logs:/var/log/mongo
+    networks:
+      loa:
+        aliases:
+          - mongo.service.loa
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: "loa_redis"
+    volumes:
+      - redis-data:/data
+      - service-logs:/var/log/redis
+    networks:
+      loa:
+        aliases:
+          - redis.service.loa
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+  vault:
+    image: vault:latest
+    build:
+      context: ./vault
+      dockerfile: dockerfile
+    ports:
+      - "8200:8200"
+    container_name: "loa_vault"
+    volumes:
+      - vault-data:/vault/file
+      - vault-key:/vault/config
+      - service-certs:/etc/vault
+      - service-logs:/var/log/vault
+    networks:
+      loa:
+        aliases:
+          - vault.service.loa
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config=/vault/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mongo-data:
+    driver: local
+  redis-data:
+    driver: local
+  vault-data:
+    driver: local
+  vault-key:
+    driver: local
+  service-certs:
+    driver: local
+  service-logs:
+    driver: local
+
+networks:
+  loa:
+    driver: bridge
+

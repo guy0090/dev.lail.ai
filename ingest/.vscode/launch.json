@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Dev",
+      "command": "npm run dev"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Start",
+      "command": "npm run start"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Lint typescript-express-starter",
+      "command": "npm run lint"
+    },
+    {
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Lint:Fix typescript-express-starter",
+      "command": "npm run lint:fix"
+    }
+  ]
+}

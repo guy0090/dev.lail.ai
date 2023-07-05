@@ -1,0 +1,6 @@
+FROM vault:latest
+
+RUN mkdir -p /etc/vault
+RUN mkdir -p /vault/config
+
+COPY ./vault.hcl /vault/config/vault.hcl
